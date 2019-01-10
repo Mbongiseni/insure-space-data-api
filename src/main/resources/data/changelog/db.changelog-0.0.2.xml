@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="0.0.1-1" author="Mbongiseni">
+		<sql>
+			USE demo_db;
+
+			INSERT INTO Lookup_Gender (lookup_gender_id, name, description) VALUES(1
+			,'Male', 'Male');
+			INSERT INTO Lookup_Gender (lookup_gender_id, name, description) VALUES(2
+			,'Female', 'Female');
+
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(1 ,'Afrikaans', 'Afrikaans');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(2 ,'English', 'English');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(3 ,'IsiNdebele', 'IsiNdebele');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(4 ,'IsiXhosa', 'IsiXhosa');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(5 ,'IsiZulu', 'IsiZulu');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(6 ,'Sesotho', 'Sesotho');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(7 ,'Sesotho sa Leboa', 'Sesotho sa Leboa');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(8 ,'Setswana', 'Setswana');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(9 ,'SiSwati', 'SiSwati');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(10 ,'Tshivenda', 'Tshivenda');
+			INSERT INTO Lookup_Language (lookup_language_id, name, description)
+			VALUES(11 ,'Xitsonga', 'Xitsonga');
+
+			INSERT INTO Lookup_Race (lookup_race_id, name, description) VALUES (1,
+			'African', 'African');
+			INSERT INTO Lookup_Race (lookup_race_id, name, description) VALUES (2,
+			'Coloured', 'Coloured');
+			INSERT INTO Lookup_Race (lookup_race_id, name, description) VALUES (3,
+			'Indian/Asian', 'Indian/Asian');
+			INSERT INTO Lookup_Race (lookup_race_id, name, description) VALUES (4,
+			'White', 'White');
+
+			INSERT INTO Lookup_Title (lookup_title_id, name, description) VALUES(1,
+			'Miss', 'Miss');
+			INSERT INTO Lookup_Title (lookup_title_id, name, description) VALUES(2,
+			'Mr', 'Mr');
+			INSERT INTO Lookup_Title (lookup_title_id, name, description) VALUES(3,
+			'Mrs', 'Mrs');
+
+			INSERT INTO Lookup_Marital_Status(lookup_marital_status_id, name,
+			description) VALUES(1, 'Divorced','Divorced');
+			INSERT INTO Lookup_Marital_Status(lookup_marital_status_id, name,
+			description) VALUES(2, 'Married','Married');
+			INSERT INTO Lookup_Marital_Status(lookup_marital_status_id, name,
+			description) VALUES(3, 'Single','Single');
+			INSERT INTO Lookup_Marital_Status(lookup_marital_status_id, name,
+			description) VALUES(4, 'Widowed','Widowed');
+
+			INSERT INTO Lookup_Relationship (name, description)
+			VALUES('Parent','Parent');
+			INSERT INTO Lookup_Relationship (name, description)
+			VALUES('Child','Child');
+			INSERT INTO Lookup_Relationship (name, description)
+			VALUES('Sibling','Sibling');
+			INSERT INTO Lookup_Relationship (name, description)
+			VALUES('Spouse','Spouse');
+		</sql>
+	</changeSet>
+</databaseChangeLog>

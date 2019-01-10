@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="0.0.1-1" author="Mbongiseni">
+		<sql>
+			-- MySQL Workbench Forward Engineering
+
+			SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+			SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+			SET @OLD_SQL_MODE=@@SQL_MODE,
+			SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+			-- -----------------------------------------------------
+			-- Schema demo_db
+			-- -----------------------------------------------------
+
+			-- -----------------------------------------------------
+			-- Schema demo_db
+			-- -----------------------------------------------------
+			CREATE SCHEMA IF NOT EXISTS `demo_db` DEFAULT CHARACTER SET utf8 ;
+			USE `demo_db` ;
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Lookup_Title`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Lookup_Title` (
+			`lookup_title_id` INT NOT NULL,
+			`name` VARCHAR(45) NOT NULL,
+			`description` VARCHAR(45) NULL,
+			PRIMARY KEY (`lookup_title_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Lookup_Gender`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Lookup_Gender` (
+			`lookup_gender_id` INT NOT NULL,
+			`name` VARCHAR(45) NOT NULL,
+			`description` VARCHAR(45) NULL,
+			PRIMARY KEY (`lookup_gender_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Lookup_Language`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Lookup_Language` (
+			`lookup_language_id` INT NOT NULL,
+			`name` VARCHAR(45) NOT NULL,
+			`description` VARCHAR(45) NULL,
+			PRIMARY KEY (`lookup_language_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Lookup_Race`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Lookup_Race` (
+			`lookup_race_id` INT NOT NULL,
+			`name` VARCHAR(45) NULL,
+			`description` VARCHAR(45) NULL,
+			PRIMARY KEY (`lookup_race_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Lookup_Marital_Status`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Lookup_Marital_Status` (
+			`lookup_marital_status_id` INT NOT NULL,
+			`name` VARCHAR(45) NOT NULL,
+			`description` VARCHAR(45) NULL,
+			PRIMARY KEY (`lookup_marital_status_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`AddressInfo`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`AddressInfo` (
+			`address_id` INT NOT NULL AUTO_INCREMENT,
+			`line_1` VARCHAR(45) NULL,
+			`line_2` VARCHAR(45) NULL,
+			`line_3` VARCHAR(45) NULL,
+			`line_4` VARCHAR(45) NULL,
+			`postal_code` VARCHAR(45) NULL,
+			PRIMARY KEY (`address_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`ContactInfo`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`ContactInfo` (
+			`contact_info_id` INT NOT NULL AUTO_INCREMENT,
+			`phone_number_cell` VARCHAR(45) NULL,
+			`phone_number_home` VARCHAR(45) NULL,
+			`email_address` VARCHAR(45) NULL,
+			PRIMARY KEY (`contact_info_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Clients`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Clients` (
+			`client_id` INT NOT NULL AUTO_INCREMENT,
+			`lookup_title_id` INT NULL,
+			`initials` VARCHAR(5) NULL,
+			`first_name` VARCHAR(45) NULL,
+			`middle_name` VARCHAR(45) NULL,
+			`last_name` VARCHAR(45) NULL,
+			`date_of_birth` DATE NULL,
+			`idNumber` VARCHAR(45) NULL,
+			`lookup_gender_id` INT NULL,
+			`lookup_language_id` INT NULL,
+			`lookup_race_id` INT NULL,
+			`lookup_marital_status_id` INT NULL,
+			`address_id` INT NULL,
+			`contact_info_id` INT NULL,
+			PRIMARY KEY (`client_id`),
+			INDEX `fk_Clients_Lookup_Title_idx` (`lookup_title_id` ASC),
+			INDEX `fk_Clients_Lookup_Gener1_idx` (`lookup_gender_id` ASC),
+			INDEX `fk_Clients_Lookup_Language1_idx` (`lookup_language_id` ASC),
+			INDEX `fk_Clients_Lookup_Race1_idx` (`lookup_race_id` ASC),
+			INDEX `fk_Clients_Lookup_Marital_Status1_idx` (`lookup_marital_status_id`
+			ASC),
+			INDEX `fk_Clients_Addresses1_idx` (`address_id` ASC),
+			INDEX `fk_Clients_ContactInfo1_idx` (`contact_info_id` ASC),
+			CONSTRAINT `fk_Clients_Lookup_Title`
+			FOREIGN KEY (`lookup_title_id`)
+			REFERENCES `demo_db`.`Lookup_Title` (`lookup_title_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Clients_Lookup_Gener1`
+			FOREIGN KEY (`lookup_gender_id`)
+			REFERENCES `demo_db`.`Lookup_Gender` (`lookup_gender_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Clients_Lookup_Language1`
+			FOREIGN KEY (`lookup_language_id`)
+			REFERENCES `demo_db`.`Lookup_Language` (`lookup_language_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Clients_Lookup_Race1`
+			FOREIGN KEY (`lookup_race_id`)
+			REFERENCES `demo_db`.`Lookup_Race` (`lookup_race_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Clients_Lookup_Marital_Status1`
+			FOREIGN KEY (`lookup_marital_status_id`)
+			REFERENCES `demo_db`.`Lookup_Marital_Status` (`lookup_marital_status_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Clients_Addresses1`
+			FOREIGN KEY (`address_id`)
+			REFERENCES `demo_db`.`AddressInfo` (`address_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Clients_ContactInfo1`
+			FOREIGN KEY (`contact_info_id`)
+			REFERENCES `demo_db`.`ContactInfo` (`contact_info_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION)
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Lookup_Relationship`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Lookup_Relationship` (
+			`relationship_id` INT NOT NULL AUTO_INCREMENT,
+			`name` VARCHAR(45) NULL,
+			`description` VARCHAR(45) NULL,
+			PRIMARY KEY (`relationship_id`))
+			ENGINE = InnoDB;
+
+
+			-- -----------------------------------------------------
+			-- Table `demo_db`.`Dependant`
+			-- -----------------------------------------------------
+			CREATE TABLE IF NOT EXISTS `demo_db`.`Dependant` (
+			`dependant_id` INT NOT NULL AUTO_INCREMENT,
+			`first_name` VARCHAR(45) NULL,
+			`middle_name` VARCHAR(45) NULL,
+			`last_name` VARCHAR(45) NULL,
+			`date_of_birth` DATE NULL,
+			`idNumber` VARCHAR(45) NULL,
+			`lookup_relationship_id` INT NOT NULL,
+			`client_id` INT NOT NULL,
+			PRIMARY KEY (`dependant_id`),
+			INDEX `fk_Dependant_lookup_relationship1_idx` (`lookup_relationship_id`
+			ASC),
+			INDEX `fk_Dependant_Clients1_idx` (`client_id` ASC),
+			CONSTRAINT `fk_Dependant_lookup_relationship1`
+			FOREIGN KEY (`lookup_relationship_id`)
+			REFERENCES `demo_db`.`Lookup_Relationship` (`relationship_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION,
+			CONSTRAINT `fk_Dependant_Clients1`
+			FOREIGN KEY (`client_id`)
+			REFERENCES `demo_db`.`Clients` (`client_id`)
+			ON DELETE NO ACTION
+			ON UPDATE NO ACTION)
+			ENGINE = InnoDB;
+
+
+			SET SQL_MODE=@OLD_SQL_MODE;
+			SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+			SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+		</sql>
+	</changeSet>
+</databaseChangeLog>
